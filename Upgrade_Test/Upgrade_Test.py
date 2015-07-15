@@ -36,22 +36,23 @@ class Upgrade_Test():
             driver.find_element_by_id("fw_upgrade_confirm_ok").click()
             self.upload_status_check(driver)
             driver.quit()
-
-            time.sleep(60)            
-            while ssh_port_status == False:
+            time.sleep(60)
+                        
+            while True:
                 ssh_port_status =self.sshport_check(server_ip)
-                print("ssh_status" + ssh_port_status)
+                print("ssh_status: " + str(ssh_port_status))
                 if ssh_port_status == True:
                     version_compara_status = self.ssh_check(server_ip,upgrade_version)[1]
-                    print("verify_upgrade_version:" + version_compara_status)
+                    print("verify_upgrade_version: " + version_compara_status)
+                    sys.exit(0)
                     if self.ssh_check(server_ip,upgrade_version)[1] == "fail":
                         print("get_err_log:" + self.download_file(server_ip))
-                #else:
-                #    print(ssh_port_status)
+                        sys.exit(1)
+              
 
-            sys.exit(0)
+            
        except :
-            sys.exit(1)
+            #sys.exit(1)
      
 
     def sshport_check(self,destip):
