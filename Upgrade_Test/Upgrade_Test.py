@@ -52,7 +52,7 @@ class Upgrade_Test():
 
             
        except :
-            #sys.exit(1)
+            sys.exit(1)
      
 
     def sshport_check(self,destip):
