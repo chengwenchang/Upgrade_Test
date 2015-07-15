@@ -38,7 +38,7 @@ class Upgrade_Test():
             driver.quit()
             time.sleep(60)
                         
-            while True:
+            while ssh_port_status == False:
                 ssh_port_status =self.sshport_check(server_ip)
                 print("ssh_status: " + str(ssh_port_status))
                 if ssh_port_status == True:
