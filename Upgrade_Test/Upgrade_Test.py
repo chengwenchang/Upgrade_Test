@@ -34,12 +34,13 @@ class Upgrade_Test():
             driver.find_element_by_xpath("//input[@id='upload_file']").send_keys(fw_path)
             driver.find_element_by_id("OKBTN").click()
             driver.find_element_by_id("fw_upgrade_confirm_ok").click()
-            print("upload_status:" + self.upload_status_check(driver)[1]) 
+            #print("upload_status:" + self.upload_status_check(driver)[1]) 
             driver.quit()
 
             time.sleep(60)            
             while ssh_port_status == False:
                 ssh_port_status =self.sshport_check(server_ip)
+                print("ssh_status" + ssh_port_status)
                 if ssh_port_status == True:
                     version_compara_status = self.ssh_check(server_ip,upgrade_version)[1]
                     print("verify_upgrade_version:" + version_compara_status)
@@ -108,7 +109,7 @@ class Upgrade_Test():
         
         while True:
             
-            #print(upload_status.text)
+            print(upload_status.text)
             if "Upload complete. Please wait while the system reboots." in upload_status.text:
                 return True , upload_status.text
                 break
