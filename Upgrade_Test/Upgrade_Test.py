@@ -36,9 +36,9 @@ class Upgrade_Test():
             driver.find_element_by_id("fw_upgrade_confirm_ok").click()
             print("upload_status:" + self.upload_status_check(driver)[1]) 
             driver.quit()
-            time.sleep(60)
-            
-            while sshport_check == True:
+
+            time.sleep(60)            
+            while ssh_port_status == False:
                 ssh_port_status =self.sshport_check(server_ip)
                 if ssh_port_status == True:
                     version_compara_status = self.ssh_check(server_ip,upgrade_version)[1]
