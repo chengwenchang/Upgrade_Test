@@ -19,7 +19,7 @@ class Upgrade_Test():
             server_ip = sys.argv[1]
             upgrade_version = sys.argv[2]
             fw_path = sys.argv[3]
-            
+            ssh_port_status = False
                        
             driver.get("http://"+ server_ip+"/")
             driver.find_element_by_name("user").clear()
@@ -36,16 +36,17 @@ class Upgrade_Test():
             driver.find_element_by_id("fw_upgrade_confirm_ok").click()
             print("upload_status:" + self.upload_status_check(driver)[1]) 
             driver.quit()
-
-            time.sleep(120)
-            ssh_port_status =self.sshport_check(server_ip)
-            if ssh_port_status == True:
-                version_compara_status = self.ssh_check(server_ip,upgrade_version)[1]
-                print("verify_upgrade_version:" + version_compara_status)
-                if self.ssh_check(server_ip,upgrade_version)[1] == "fail":
-                    print("get_err_log:" + self.download_file(server_ip))
-            else:
-                print(ssh_port_status)
+            time.sleep(60)
+            
+            while sshport_check == True:
+                ssh_port_status =self.sshport_check(server_ip)
+                if ssh_port_status == True:
+                    version_compara_status = self.ssh_check(server_ip,upgrade_version)[1]
+                    print("verify_upgrade_version:" + version_compara_status)
+                    if self.ssh_check(server_ip,upgrade_version)[1] == "fail":
+                        print("get_err_log:" + self.download_file(server_ip))
+                #else:
+                #    print(ssh_port_status)
 
             sys.exit(0)
        except :
@@ -85,7 +86,7 @@ class Upgrade_Test():
             return "Ssh connect fail"
 
     def download_file(self,destip):
-        #try:
+        try:
             t = paramiko.Transport((destip,22))
             t.connect(username = "root", password = "xbbigheadluderzalestrong")
             sftp = paramiko.SFTPClient.from_transport(t)
@@ -93,8 +94,8 @@ class Upgrade_Test():
             remote_path = "/mtd/block4/var/log/upgrade_err.log"
             sftp.get(remote_path,local_path)
             return "download file success"
-        #except:
-            #return "dowmload file fail"
+        except:
+            return "dowmload file fail"
 
         
     def upload_status_check(self,driver):
