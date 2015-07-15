@@ -13,13 +13,13 @@ from paramiko.sftp_client import SFTPClient
 class Upgrade_Test():
 
     def Test(self):
-       try:
+     
             driver = webdriver.Firefox()
             driver.implicitly_wait(30)
             server_ip = sys.argv[1]
             upgrade_version = sys.argv[2]
             fw_path = sys.argv[3]
-            ssh_port_status = False
+            
                        
             driver.get("http://"+ server_ip+"/")
             driver.find_element_by_name("user").clear()
@@ -38,21 +38,20 @@ class Upgrade_Test():
             driver.quit()
             time.sleep(60)
                         
-            while ssh_port_status == False:
-                ssh_port_status =self.sshport_check(server_ip)
-                print("ssh_status: " + str(ssh_port_status))
-                if ssh_port_status == True:
-                    version_compara_status = self.ssh_check(server_ip,upgrade_version)[1]
+            
+            ssh_port_status =self.sshport_check(server_ip)
+            if ssh_port_status == True:
+                version_compara_status = self.ssh_check(server_ip,upgrade_version)[1]
+                if version_compara_status == "pass": 
                     print("verify_upgrade_version: " + version_compara_status)
                     sys.exit(0)
-                    if self.ssh_check(server_ip,upgrade_version)[1] == "fail":
-                        print("get_err_log:" + self.download_file(server_ip))
-                        sys.exit(1)
-              
+                else :
+                    #print("get_err_log:" + self.download_file(server_ip))
+                    print("verify_upgrade_version: " + version_compara_status)
+                    sys.exit(1)
+            else:sys.exit(1)
 
-            
-       except :
-            sys.exit(1)
+       
      
 
     def sshport_check(self,destip):
@@ -60,13 +59,15 @@ class Upgrade_Test():
         _socket.settimeout(1)
         retry_time= 1
         sshport_status = False
-        while retry_time < 11:
+        while retry_time < 201:
             try:
                 _socket.connect((destip,22))
                 sshport_status = True
+                print("ssh_status: " + str(sshport_status))
                 break
             except:
                 retry_time= retry_time + 1
+                print("ssh_status: " + str(sshport_status))
                 time.sleep(5)
         
         return sshport_status  
