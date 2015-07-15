@@ -95,11 +95,11 @@ class Upgrade_Test():
             sftp.get(remote_path,local_path)
             return "download file success"
         except:
-<<<<<<< HEAD
+
             return "dowmload file fail"
-=======
-            #return "dowmload file fail"
->>>>>>> f925c66fae33d7175c7b9c1b0fc1b2487ef6f34d
+
+
+
 
         
     def upload_status_check(self,driver):
