@@ -34,7 +34,7 @@ class Upgrade_Test():
             driver.find_element_by_xpath("//input[@id='upload_file']").send_keys(fw_path)
             driver.find_element_by_id("OKBTN").click()
             driver.find_element_by_id("fw_upgrade_confirm_ok").click()
-            #print("upload_status:" + self.upload_status_check(driver)[1]) 
+            self.upload_status_check(driver)
             driver.quit()
 
             time.sleep(60)            
