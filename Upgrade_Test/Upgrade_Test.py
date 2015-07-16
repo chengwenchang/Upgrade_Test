@@ -12,7 +12,7 @@ from paramiko.sftp_client import SFTPClient
 
 class Upgrade_Test():
 
-    def Test(selfn):
+    def Test(self):
      
             #driver = webdriver.Firefox()
             #driver.implicitly_wait(30)            
@@ -147,5 +147,5 @@ class Upgrade_Test():
 
 
 _Upgrade_Test = Upgrade_Test()
-Upgrade_Test.Test()
+_Upgrade_Test.Test()
    
