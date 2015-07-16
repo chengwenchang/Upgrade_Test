@@ -43,11 +43,11 @@ class Upgrade_Test():
             if ssh_port_status == True:
                 version_compara_status = self.ssh_check(server_ip,upgrade_version)[1]
                 if version_compara_status == "pass": 
-                    print("verify_upgrade_version: " + version_compara_status)
+                    print("verify_upgrade_version: " + sys.argv[2] + version_compara_status)
                     sys.exit(0)
                 else :
                     #print("get_err_log:" + self.download_file(server_ip))
-                    print("verify_upgrade_version: " + version_compara_status)
+                    print("verify_upgrade_version: " + sys.argv[2] + version_compara_status)
                     sys.exit(1)
             else:sys.exit(1)
 
