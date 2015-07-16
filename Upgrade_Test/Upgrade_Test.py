@@ -25,6 +25,7 @@ class Upgrade_Test():
             driver.find_element_by_name("pass").clear()
             driver.find_element_by_name("pass").send_keys("admin")
             driver.find_element_by_name("login_btn").click()
+            self.is_element_to_be_clickable(driver,"//div[@id='masterdiv']/div[4]")
             driver.find_element_by_xpath("//div[@id='masterdiv']/div[4]").click()
             driver.find_element_by_xpath("//span[@id='sub6']/div[3]").click()
             driver.switch_to_frame("mainContent")        
@@ -143,7 +144,12 @@ class Upgrade_Test():
             return alert_text
         finally: self.accept_next_alert = True
 
-
+    def is_element_to_be_clickable(self,driver,ID):
+        try: 
+            wait = WebDriverWait(driver,10)
+            wait.until(expected_conditions.element_to_be_clickable((By.ID,ID)))          
+        except NoSuchElementException, e: return False
+        return True
 
 
 _Upgrade_Test = Upgrade_Test()
