@@ -14,27 +14,27 @@ class Upgrade_Test():
 
     def Test(self):
      
-            driver = webdriver.Firefox()
-            driver.implicitly_wait(30)            
+            #driver = webdriver.Firefox()
+            #driver.implicitly_wait(30)            
             server_ip = sys.argv[1]          
             fw_path  =sys.argv[2] 
             upgrade_version =sys.argv[3]    
-            driver.get("http://"+ server_ip+"/")
-            driver.find_element_by_name("user").clear()
-            driver.find_element_by_name("user").send_keys("admin")
-            driver.find_element_by_name("pass").clear()
-            driver.find_element_by_name("pass").send_keys("admin")
-            driver.find_element_by_name("login_btn").click()
-            driver.find_element_by_xpath("//div[@id='masterdiv']/div[4]").click()
-            driver.find_element_by_xpath("//span[@id='sub6']/div[3]").click()
-            driver.switch_to_frame("mainContent")        
-            #driver.find_element_by_xpath("//input[@id='upload_file']").send_keys("\\\\snow2\\Public\\RD\\beta\\Titan\\NUUO\\nt4040\\v03.00.00\\NT-4040_03.00.0000.0025_20150511_1905.bin")
-            driver.find_element_by_xpath("//input[@id='upload_file']").send_keys(fw_path)
-            driver.find_element_by_id("OKBTN").click()
-            driver.find_element_by_id("fw_upgrade_confirm_ok").click()
-            self.upload_status_check(driver)
-            driver.quit()
-            time.sleep(60)
+            #driver.get("http://"+ server_ip+"/")
+            #driver.find_element_by_name("user").clear()
+            #driver.find_element_by_name("user").send_keys("admin")
+            #driver.find_element_by_name("pass").clear()
+            #driver.find_element_by_name("pass").send_keys("admin")
+            #driver.find_element_by_name("login_btn").click()
+            #driver.find_element_by_xpath("//div[@id='masterdiv']/div[4]").click()
+            #driver.find_element_by_xpath("//span[@id='sub6']/div[3]").click()
+            #driver.switch_to_frame("mainContent")        
+            ##driver.find_element_by_xpath("//input[@id='upload_file']").send_keys("\\\\snow2\\Public\\RD\\beta\\Titan\\NUUO\\nt4040\\v03.00.00\\NT-4040_03.00.0000.0025_20150511_1905.bin")
+            #driver.find_element_by_xpath("//input[@id='upload_file']").send_keys(fw_path)
+            #driver.find_element_by_id("OKBTN").click()
+            #driver.find_element_by_id("fw_upgrade_confirm_ok").click()
+            #self.upload_status_check(driver)
+            #driver.quit()
+            #time.sleep(60)
                         
             
             ssh_port_status =self.sshport_check(server_ip)
