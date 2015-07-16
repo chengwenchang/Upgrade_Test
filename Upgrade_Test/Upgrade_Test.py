@@ -18,7 +18,7 @@ class Upgrade_Test():
             #driver.implicitly_wait(30)            
             server_ip = sys.argv[1]          
             fw_path  =sys.argv[2] 
-            #upgrade_version =sys.argv[3]    
+            upgrade_version =sys.argv[3]    
             #driver.get("http://"+ server_ip+"/")
             #driver.find_element_by_name("user").clear()
             #driver.find_element_by_name("user").send_keys("admin")
@@ -42,12 +42,12 @@ class Upgrade_Test():
                 version_compara_status = self.ssh_check(server_ip,upgrade_version)[1]
                 if version_compara_status == "pass": 
                     print("verify_upgrade_version: " + upgrade_version + " " + version_compara_status)
-                    return True
+                    sys.exit(0)
                 else :
                     #print("get_err_log:" + self.download_file(server_ip))
                     print("verify_upgrade_version: " + upgrade_version + " " + version_compara_status)
-                    return False
-            else:return False
+                    sys.exit(1)
+            else:sys.exit(1)
 
        
      
