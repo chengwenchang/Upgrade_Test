@@ -13,7 +13,7 @@
     <Name>Upgrade_Test</Name>
     <RootNamespace>Upgrade_Test</RootNamespace>
     <LaunchProvider>Standard Python launcher</LaunchProvider>
-    <CommandLineArguments>"10.0.130.175" "03.00.0000.0025" "\\snow2\Public\RD\beta\Titan\NUUO\nt4040\v03.00.00\NT-4040_03.00.0000.0025_20150511_1905.bin"</CommandLineArguments>
+    <CommandLineArguments>"10.0.130.175" "03.00.0000.0025" "\\10.0.0.10\temp2\audy\upgrade_test\2.2_upgrade_test.bin "</CommandLineArguments>
     <EnableNativeCodeDebugging>False</EnableNativeCodeDebugging>
     <InterpreterArguments>
     </InterpreterArguments>
