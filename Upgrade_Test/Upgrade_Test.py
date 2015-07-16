@@ -26,7 +26,7 @@ class Upgrade_Test():
             driver.find_element_by_name("pass").clear()
             driver.find_element_by_name("pass").send_keys("admin")
             driver.find_element_by_name("login_btn").click()
-            self.is_element_to_be_clickable(driver,"//div[@id='masterdiv']/div[4]")
+            self.is_element_to_be_clickable(driver,"masterdiv")
             driver.find_element_by_xpath("//div[@id='masterdiv']/div[4]").click()
             driver.find_element_by_xpath("//span[@id='sub6']/div[3]").click()
             driver.switch_to_frame("mainContent")        
